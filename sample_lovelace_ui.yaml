@@ -1,0 +1,28 @@
+type: vertical-stack
+title: Car Heater
+cards:
+  - type: custom:time-picker-card
+    entity: input_datetime.car_heater_departure_time
+    hour_mode: 24
+    hide:
+      name: true
+    hour_step: 1
+    minute_step: 5
+    second_step: 5
+    name: ''
+    layout:
+      embedded: true
+      name: header
+      align_controls: center
+  - type: entities
+    entities:
+      - entity: input_boolean.car_heater_weekday
+      - type: section
+      - entity: input_boolean.car_heater_enable
+      - entity: input_boolean.car_heater_simulated_switch
+      - type: section
+      - entity: sensor.car_heater_run_time
+      - entity: sensor.car_heater_start_time
+      - type: section
+      - entity: sensor.car_heater_status
+      - entity: weather.home
