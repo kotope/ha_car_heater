@@ -19,7 +19,7 @@ cards:
       - entity: input_boolean.car_heater_weekday
       - type: section
       - entity: input_boolean.car_heater_enable
-      - entity: input_boolean.car_heater_simulated_switch
+      - entity: switch.car_heater
       - type: section
       - entity: sensor.car_heater_run_time
       - entity: sensor.car_heater_start_time
