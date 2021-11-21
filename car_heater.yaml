@@ -37,7 +37,7 @@ automation:
     trigger:
     - platform: state
       # CHANGE-ME: car heater power switch
-      entity_id: switch.car_heater'
+      entity_id: switch.car_heater
       from: 'off'
       to: 'on'
     condition: []
@@ -53,11 +53,10 @@ automation:
           value_template: '{{ not wait.completed }}'
         sequence:
           # CHANGE-ME: mobile app notification device
-          - device_id: 9335ca1ae95786200b5e5b18e5e4afba
-            domain: mobile_app
-            type: notify
-            message: Car heating power cable is not connected!
-            title: Car heater
+          - service: notify.mobile_app_samsung_s10
+            data:
+              message: Car heating power cable is not connected!
+              title: Car heater
       default: []
     mode: single
 
