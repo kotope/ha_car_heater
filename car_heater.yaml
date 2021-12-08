@@ -205,7 +205,7 @@ sensor:
         value_template: >
           {% if states.input_datetime.car_heater_departure_time.state is defined %}
             {% if ((states('sensor.car_heater_run_time')|float) > 0) %}
-              {{ strptime(((as_timestamp('1970-01-01 ' ~ states('input_datetime.car_heater_departure_time')) - (states('sensor.car_heater_run_time')|float *3600))|timestamp_local), '%Y-%m-%d %H:%M:%S').strftime("%H:%M") }}
+              {{ strptime(((as_timestamp('1970-01-01 ' ~ states('input_datetime.car_heater_departure_time')) - (states('sensor.car_heater_run_time')|float *3600))|timestamp_custom), '%Y-%m-%d %H:%M:%S').strftime("%H:%M") }}
             {%else%}
               Never
             {%endif%}
@@ -219,7 +219,7 @@ sensor:
         icon_template: mdi:clock
         value_template: >
           {% if states.input_datetime.car_heater_departure_time.state is defined %}
-              {{ strptime(((as_timestamp('1970-01-01 ' ~ states('input_datetime.car_heater_departure_time')) - (10800))|timestamp_local), '%Y-%m-%d %H:%M:%S').strftime("%H:%M") }}
+              {{ strptime(((as_timestamp('1970-01-01 ' ~ states('input_datetime.car_heater_departure_time')) - (10800))|timestamp_custom), '%Y-%m-%d %H:%M:%S').strftime("%H:%M") }}
           {% else %}
               waiting for sensors
           {% endif%}
