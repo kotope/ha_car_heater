@@ -249,5 +249,14 @@ sensor:
       car_time_until_departure:
         friendly_name: 'time until set departure'
         icon_template: mdi:clock
-        value_template: '{{ (as_timestamp(now().strftime("%Y-%m-%d ") + states.input_datetime.car_heater_departure_time.state) - as_timestamp(now().strftime("%Y-%m-%d %H:%M"))) / 60 }}'
+        value_template: >-
+          {%- if as_timestamp(now().strftime("%Y-%m-%d ") + states.input_datetime.car_heater_departure_time.state) < as_timestamp(now()) -%}
+            {{ ((as_timestamp(now().strftime("%Y-%m-%d ") +
+              states.input_datetime.car_heater_departure_time.state) + (3600*24)) -
+              as_timestamp(now().strftime("%Y-%m-%d %H:%M"))) / 60 }}
+          {%- else -%}
+            {{ (as_timestamp(now().strftime("%Y-%m-%d ") +
+              states.input_datetime.car_heater_departure_time.state) -
+              as_timestamp(now().strftime("%Y-%m-%d %H:%M"))) / 60 }}
+          {%- endif -%}
 
